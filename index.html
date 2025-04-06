@@ -22,6 +22,22 @@
     const resultEl = document.getElementById('result');
     const startBtn = document.getElementById('start-btn');
 
+     function playBeep() {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      oscillator.type = 'sine';       // 波の種類（sineが基本的な「ピッ」）
+      oscillator.frequency.value = 880; // 周波数（880Hz = 高めの音）
+      gain.gain.value = 0.1;          // 音量（0〜1）
+
+      oscillator.connect(gain);
+      gain.connect(ctx.destination);
+
+      oscillator.start();
+      oscillator.stop(ctx.currentTime + 0.1); // 0.1秒で止める
+    }
+
     startBtn.addEventListener('click', () => {
       resultEl.textContent = '';
       startBtn.disabled = true;
@@ -34,6 +50,8 @@
         const n = Math.floor(Math.random() * 9) + 1;
         numbers.push(n);
         numberEl.textContent = n;
+
+        playBeep();
         i++;
         if (i >= total) {
           clearInterval(intervalId);
