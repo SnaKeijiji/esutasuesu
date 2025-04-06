@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>フラッシュ暗算</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+    #number { font-size: 100px; margin: 40px; }
+    #start-btn { font-size: 24px; padding: 10px 20px; }
+    #result { font-size: 24px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>フラッシュ暗算</h1>
+  <div id="number">0</div>
+  <button id="start-btn">スタート</button>
+  <div id="result"></div>
+
+  <script>
+    const numberEl = document.getElementById('number');
+    const resultEl = document.getElementById('result');
+    const startBtn = document.getElementById('start-btn');
+
+    startBtn.addEventListener('click', () => {
+      resultEl.textContent = '';
+      startBtn.disabled = true;
+      const numbers = [];
+      let i = 0;
+      const total = 5; // 表示する数の数
+      const interval = 800; // ミリ秒ごとに表示
+
+      const intervalId = setInterval(() => {
+        const n = Math.floor(Math.random() * 9) + 1;
+        numbers.push(n);
+        numberEl.textContent = n;
+        i++;
+        if (i >= total) {
+          clearInterval(intervalId);
+          numberEl.textContent = '?';
+          setTimeout(() => {
+            const sum = numbers.reduce((a, b) => a + b, 0);
+            const answer = prompt('合計は？');
+            if (parseInt(answer) === sum) {
+              resultEl.textContent = '正解！';
+            } else {
+              resultEl.textContent = `不正解！正解は ${sum}`;
+            }
+            startBtn.disabled = false;
+          }, 500);
+        }
+      }, interval);
+    });
+  </script>
+</body>
+</html>
