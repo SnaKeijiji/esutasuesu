@@ -37,7 +37,6 @@
         i++;
         if (i >= total) {
           clearInterval(intervalId);
-          numberEl.textContent = '?';
           setTimeout(() => {
             const sum = numbers.reduce((a, b) => a + b, 0);
             const answer = prompt('合計は？');
