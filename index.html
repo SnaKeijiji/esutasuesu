@@ -57,16 +57,7 @@
         let prev = 0;
         let n = 0;
       const intervalId = setInterval(() => {
-        
-        do {
-          n = Math.floor(Math.random() * 9) + 1;
-        } while (n === prev);
-        prev = n;
-        numbers.push(n);
-        numberEl.textContent = n;
-
         playBeep();
-        i++;
         if (i >= total) {
           clearInterval(intervalId);
           setTimeout(() => {
@@ -80,6 +71,13 @@
             startBtn.disabled = false;
           }, 500);
         }
+        do {
+          n = Math.floor(Math.random() * 9) + 1;
+        } while (n === prev);
+        prev = n;
+        numbers.push(n);
+        numberEl.textContent = n;
+        i++;
       }, adjustedInterval);
     });
   </script>
