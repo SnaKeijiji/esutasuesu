@@ -51,10 +51,10 @@
       //const totalTimeSec = Math.floor(total * intervalSec); // 総時間（整数秒）
       //const adjustedInterval = (totalTimeSec * 1000) / total; // ミリ秒換算で割り直し
       const interval = 800;
-
-      const intervalId = setInterval(() => {
         let prev = 0;
         let n = 0;
+      const intervalId = setInterval(() => {
+        
         do {
           n = Math.floor(Math.random() * 9) + 1;
         } while (n === prev);
