@@ -13,7 +13,7 @@
 </head>
 <body>
   <h1>S+S</h1>
-  <div id="number">!</div>
+  <div id="number">?</div>
   <button id="start-btn">スタート</button>
   <div id="result"></div>
 
@@ -69,7 +69,7 @@
           clearInterval(intervalId);
           setTimeout(() => {
             playBeep();
-            resultEl.textContent = '?';
+            numberEl.textContent = '?';
             const sum = numbers.reduce((a, b) => a + b, 0);
             const answer = prompt('合計は？');
             if (parseInt(answer) === sum) {
