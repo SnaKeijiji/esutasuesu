@@ -58,9 +58,18 @@
         let n = 0;
       const intervalId = setInterval(() => {
         playBeep();
+        do {
+          n = Math.floor(Math.random() * 9) + 1;
+        } while (n === prev);
+        prev = n;
+        numbers.push(n);
+        numberEl.textContent = n;
+        i++;
         if (i >= total) {
           clearInterval(intervalId);
           setTimeout(() => {
+            playBeep();
+            resultEl.textContent = '?';
             const sum = numbers.reduce((a, b) => a + b, 0);
             const answer = prompt('合計は？');
             if (parseInt(answer) === sum) {
@@ -69,15 +78,8 @@
               resultEl.textContent = `不正解！正解は ${sum}`;
             }
             startBtn.disabled = false;
-          }, 500);
+          }, adjustedInterval);
         }
-        do {
-          n = Math.floor(Math.random() * 9) + 1;
-        } while (n === prev);
-        prev = n;
-        numbers.push(n);
-        numberEl.textContent = n;
-        i++;
       }, adjustedInterval);
     });
   </script>
