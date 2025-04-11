@@ -94,11 +94,12 @@
 
             setTimeout(()=>{
               const sum = numbers.reduce((a, b) => a + b, 0);
-              const answer = prompt('合計は？');
-              if (parseInt(answer) === sum) {
+              const esutasuesu = sum+(totalTimeSec/1000)
+              const answer = prompt('S+S？');
+              if (parseInt(answer) === esutasuesu) {
                 resultEl.textContent = '正解！';
               } else {
-                resultEl.textContent = `不正解！正解は ${sum}`;
+                resultEl.textContent = `不正解！正解は ${esutasuesu}`;
               }
               startBtn.disabled = false;
             },500);
