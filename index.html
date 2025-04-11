@@ -9,6 +9,18 @@
     #number { font-size: 100px; margin: 40px; }
     #start-btn { font-size: 24px; padding: 10px 20px; }
     #result { font-size: 24px; margin-top: 20px; }
+    #answer-area {
+      margin-top: 20px;
+    }
+    #answer-input {
+      font-size: 20px;
+      padding: 5px 10px;
+      width: 120px;
+    }
+    #answer-btn {
+      font-size: 20px;
+      padding: 5px 15px;
+    }
   </style>
 </head>
 <body>
@@ -16,11 +28,18 @@
   <div id="number">?</div>
   <button id="start-btn">スタート</button>
   <div id="result"></div>
+  <div id="answer-area" style="display: none;">
+    <input type="number" id="answer-input" placeholder="合計を入力" />
+    <button id="answer-btn">答える</button>
+  </div>
 
   <script>
     const numberEl = document.getElementById('number');
     const resultEl = document.getElementById('result');
     const startBtn = document.getElementById('start-btn');
+    const answerArea = document.getElementById('answer-area');
+    const answerInput = document.getElementById('answer-input');
+    const answerBtn = document.getElementById('answer-btn');
 
      function playBeep() {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -92,17 +111,23 @@
             playBeep2();
             numberEl.textContent = '?';
 
-            setTimeout(()=>{
+            answerArea.style.display = 'block';
+            answerInput.value = '';
+            answerInput.focus();
+
+            answerBtn.onclick = () => {
+              const userAnswer = parseInt(answerInput.value);
               const sum = numbers.reduce((a, b) => a + b, 0);
-              const esutasuesu = sum+(totalTimeSec/1000)
-              const answer = prompt('S+S？');
-              if (parseInt(answer) === esutasuesu) {
+              const correctAnswer = sum+(totalTimeSec/1000);
+
+              if (userAnswer === correctAnswer) {
                 resultEl.textContent = '正解！';
               } else {
-                resultEl.textContent = `不正解　正解は ${esutasuesu}`;
+                resultEl.textContent = `不正解！正解は ${correctAnswer}`;
               }
+              answerArea.style.display = 'none';
               startBtn.disabled = false;
-            },500);
+            };
           }, adjustedInterval);
         }
       }, adjustedInterval);
