@@ -13,7 +13,7 @@
 </head>
 <body>
   <h1>S+S</h1>
-  <div id="number">?</div>
+  <div id="number">?+</div>
   <button id="start-btn">スタート</button>
   <div id="result"></div>
 
@@ -65,19 +65,23 @@
         numbers.push(n);
         numberEl.textContent = n;
         i++;
+        
         if (i >= total) {
           clearInterval(intervalId);
           setTimeout(() => {
             playBeep();
             numberEl.textContent = '?';
-            const sum = numbers.reduce((a, b) => a + b, 0);
-            const answer = prompt('合計は？');
-            if (parseInt(answer) === sum) {
-              resultEl.textContent = '正解！';
-            } else {
-              resultEl.textContent = `不正解！正解は ${sum}`;
-            }
-            startBtn.disabled = false;
+
+            setTimeout(()=>{
+              const sum = numbers.reduce((a, b) => a + b, 0);
+              const answer = prompt('合計は？');
+              if (parseInt(answer) === sum) {
+                resultEl.textContent = '正解！';
+              } else {
+                resultEl.textContent = `不正解！正解は ${sum}`;
+              }
+              startBtn.disabled = false;
+            },500);
           }, adjustedInterval);
         }
       }, adjustedInterval);
