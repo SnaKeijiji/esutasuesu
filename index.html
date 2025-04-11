@@ -26,7 +26,7 @@
 <body>
   <h1>S+S</h1>
   <div id="number">?</div>
-  <button id="start-btn">Start</button>
+  <button id="start-btn">スタート</button>
   <div id="result"></div>
   <div id="answer-area" style="display: none;">
     <input type="number" id="answer-input" placeholder="S+S?" />
@@ -121,9 +121,9 @@
               const correctAnswer = sum+(totalTimeSec/1000);
 
               if (userAnswer === correctAnswer) {
-                resultEl.textContent = 'Success!';
+                resultEl.textContent = '正解！';
               } else {
-                resultEl.textContent = `S+S is ${correctAnswer}`;
+                resultEl.textContent = `不正解……　S+Sは${correctAnswer}`;
               }
               answerArea.style.display = 'none';
               startBtn.disabled = false;
