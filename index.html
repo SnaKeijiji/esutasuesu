@@ -13,7 +13,7 @@
 </head>
 <body>
   <h1>S+S</h1>
-  <div id="number">?+</div>
+  <div id="number">?</div>
   <button id="start-btn">スタート</button>
   <div id="result"></div>
 
@@ -99,7 +99,7 @@
               if (parseInt(answer) === esutasuesu) {
                 resultEl.textContent = '正解！';
               } else {
-                resultEl.textContent = `不正解！正解は ${esutasuesu}`;
+                resultEl.textContent = `不正解　正解は ${esutasuesu}`;
               }
               startBtn.disabled = false;
             },500);
