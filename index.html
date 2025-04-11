@@ -43,8 +43,13 @@
       startBtn.disabled = true;
       const numbers = [];
       let i = 0;
-      const total = 5; // 表示する数の数
-      const interval = 800; // ミリ秒ごとに表示
+       // 🔢 表示する数の個数：10～15のランダム
+      const total = Math.floor(Math.random() * 6) + 10;
+
+      // ⏱ 表示間隔：0.8〜1.2秒の間でランダム（1問ごとに固定）
+      const intervalSec = Math.random() * 0.4 + 0.8;
+      const totalTimeSec = Math.floor(total * intervalSec); // 総時間（整数秒）
+      const adjustedInterval = (totalTimeSec * 1000) / total; // ミリ秒換算で割り直し
 
       const intervalId = setInterval(() => {
         let prev = 0;
@@ -71,7 +76,7 @@
             startBtn.disabled = false;
           }, 500);
         }
-      }, interval);
+      }, adjustinterval);
     });
   </script>
 </body>
