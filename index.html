@@ -43,14 +43,17 @@
       startBtn.disabled = true;
       const numbers = [];
       let i = 0;
-       // 🔢 表示する数の個数：10～15のランダム
-      const total = Math.floor(Math.random() * 6) + 10;
+      
+        // 🎯 ランダムな総出題時間（整数秒）を決める：5〜20秒の間
+      const totalTimeSec = Math.floor(Math.random() * 6) + 10; // 10〜15秒
 
-      // ⏱ 表示間隔：0.8〜1.2秒の間でランダム（1問ごとに固定）
-      const intervalSec = Math.random() * 400 + 700;
-      //const totalTimeSec = Math.floor(total * intervalSec); // 総時間（整数秒）
-      //const adjustedInterval = (totalTimeSec * 1000) / total; // ミリ秒換算で割り直し
-      const interval = 800;
+      // ⚙️ 1問あたりの出題間隔を決める：0.7〜1.2秒の範囲
+      let intervalSec;
+      let total;
+      intervalSec = Math.random() * 0.5 + 0.7; // 0.7〜1.2秒
+      total = Math.floor(totalTimeSec / intervalSec);
+      const adjustedInterval = (totalTimeSec * 1000) / total;
+
         let prev = 0;
         let n = 0;
       const intervalId = setInterval(() => {
@@ -77,7 +80,7 @@
             startBtn.disabled = false;
           }, 500);
         }
-      }, intervalSec);
+      }, ajustedInterval);
     });
   </script>
 </body>
