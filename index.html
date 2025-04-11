@@ -26,11 +26,11 @@
 <body>
   <h1>S+S</h1>
   <div id="number">?</div>
-  <button id="start-btn">スタート</button>
+  <button id="start-btn">Start</button>
   <div id="result"></div>
   <div id="answer-area" style="display: none;">
-    <input type="number" id="answer-input" placeholder="合計を入力" />
-    <button id="answer-btn">答える</button>
+    <input type="number" id="answer-input" placeholder="S+S?" />
+    <button id="answer-btn">Submit</button>
   </div>
 
   <script>
@@ -121,9 +121,9 @@
               const correctAnswer = sum+(totalTimeSec/1000);
 
               if (userAnswer === correctAnswer) {
-                resultEl.textContent = '正解！';
+                resultEl.textContent = 'Success!';
               } else {
-                resultEl.textContent = `不正解！正解は ${correctAnswer}`;
+                resultEl.textContent = `S+S is ${correctAnswer}`;
               }
               answerArea.style.display = 'none';
               startBtn.disabled = false;
