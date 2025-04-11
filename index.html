@@ -13,7 +13,7 @@
 </head>
 <body>
   <h1>S+S</h1>
-  <div id="number">?</div>
+  <div id="number">?+</div>
   <button id="start-btn">スタート</button>
   <div id="result"></div>
 
@@ -28,8 +28,23 @@
       const gain = ctx.createGain();
 
       oscillator.type = 'sine';       // 波の種類（sineが基本的な「ピッ」）
-        // 🎵 最初だけ高い音（例：1200Hz）、それ以外は通常（880Hz）
-  oscillator.frequency.value = isFirst ? 1244 : 880;
+      oscillator.frequency.value = 880;
+      gain.gain.value = 0.1;          // 音量（0〜1）
+
+      oscillator.connect(gain);
+      gain.connect(ctx.destination);
+
+      oscillator.start();
+      oscillator.stop(ctx.currentTime + 0.1); // 0.1秒で止める
+    }
+
+    function playBeep2() {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      oscillator.type = 'sine';       // 波の種類（sineが基本的な「ピッ」）
+      oscillator.frequency.value = 1244;
       gain.gain.value = 0.1;          // 音量（0〜1）
 
       oscillator.connect(gain);
@@ -58,7 +73,11 @@
         let prev = 0;
         let n = 0;
       const intervalId = setInterval(() => {
-        playBeep(i === 0);
+        if(i===0){
+          playBeep2();
+        }else{
+          playBeep();
+        }
         do {
           n = Math.floor(Math.random() * 9) + 1;
         } while (n === prev);
@@ -70,7 +89,7 @@
         if (i >= total) {
           clearInterval(intervalId);
           setTimeout(() => {
-            playBeep();
+            playBeep2();
             numberEl.textContent = '?';
 
             setTimeout(()=>{
